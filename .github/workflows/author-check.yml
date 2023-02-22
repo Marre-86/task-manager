@@ -10,8 +10,10 @@ jobs:
       - name: Run linter
         run: make lint
       - name: Run tests
+        if: always()
         run: make test
       - name: Run test-coverage
+        if: always()
         run: make test-coverage
 #      - name: Run test & publish code coverage
 #        uses: paambaati/codeclimate-action@v3.2.0
