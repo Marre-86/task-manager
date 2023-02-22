@@ -9,8 +9,10 @@ jobs:
         run: make install
       - name: Run linter
         run: make lint
-#      - name: Run tests
-#        run: make test
+      - name: Run tests
+        run: make test
+      - name: Run test-coverage
+        run: make test-coverage
 #      - name: Run test & publish code coverage
 #        uses: paambaati/codeclimate-action@v3.2.0
 #        env:
