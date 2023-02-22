@@ -11,7 +11,7 @@ jobs:
         run: make lint
       - name: Run tests
         if: always()
-        run: make test
+        run: make test-laravel
       - name: Run test-coverage
         if: always()
         run: make test-coverage

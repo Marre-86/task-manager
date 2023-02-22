@@ -7,6 +7,11 @@ validate:
 	composer validate
 lint:
 	composer exec --verbose phpcs -- --standard=PSR12 app public routes tests
+
+test-laravel: generate-laravel-app-key test
+
+generate-laravel-app-key:
+	php artisan key:generate
 test:
 	php artisan test
 test-coverage:
