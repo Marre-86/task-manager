@@ -8,6 +8,6 @@ validate:
 lint:
 	composer exec --verbose phpcs -- --standard=PSR12 app public routes tests
 test:
-	composer exec --verbose phpunit tests
+	php artisan test
 test-coverage:
 	composer exec --verbose phpunit tests -- --coverage-clover build/logs/clover.xml
