@@ -18,15 +18,12 @@ jobs:
         run: make test
       - name: Run test-coverage
         if: always()
-        run: make test-coverage
+      - name: Run test & publish code coverage
+        uses: paambaati/codeclimate-action@v3.2.0
         env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
           XDEBUG_MODE: coverage
-#      - name: Run test & publish code coverage
-#        uses: paambaati/codeclimate-action@v3.2.0
-#        env:
-#          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-#          XDEBUG_MODE: coverage
-#        with:
-#          coverageCommand: make test-coverage
-#          coverageLocations: ${{github.workplace}}/build/logs/clover.xml:clover
-#          debug: true
+        with:
+          coverageCommand: make test-coverage
+          coverageLocations: ${{github.workspace}}/build/logs/clover.xml:clover
+          debug: true
