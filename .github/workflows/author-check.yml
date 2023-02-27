@@ -17,6 +17,8 @@ jobs:
         run: |
           touch database/database.sqlite
           php artisan migrate
+      - name: Launch Vite
+        run: npm run dev
       - name: Run tests
         run: make test
       - name: Run test & publish code coverage
