@@ -20,7 +20,7 @@ jobs:
       - name: Launch Vite
         run: |
           npm install
-          LARAVEL_BYPASS_ENV_CHECK=1 npm run dev
+          npm run build
       - name: Run tests
         run: make test
       - name: Run test & publish code coverage
