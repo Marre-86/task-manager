@@ -7,14 +7,10 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>Менеджер задач</title>
-        <!-- Scripts -->
-        <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.bunny.net">
         
         <!-- Scripts -->
-        @vite(['resources/js/app.js'])
+        @vite(['resources/js/app.js', 'resources/css/app.css'])
+
     </head>
     <body>
         <div id="app">
@@ -64,6 +60,15 @@
                     </div>
                 </nav>
             </header>
+
+        <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 3000)">
+            @if (session()->has('flash_notification'))
+                <div style="position: absolute; top: 12%; left: 0;  width: 100%; text-align: center">
+                    @include('flash::message')    
+                </div>
+            @endif
+        </div>
+
             @yield('content')
         </div>
     </body>

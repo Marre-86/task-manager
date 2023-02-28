@@ -46,6 +46,8 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
+        flash("Welcome Aboard, {$request->name}!");
+
         return redirect()->route('tasks.index');
     }
 }
