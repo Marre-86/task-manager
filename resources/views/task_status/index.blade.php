@@ -33,7 +33,7 @@
                         <td>                            
                             <a data-confirm="Вы уверены?" data-method="delete" class="text-red-600 hover:text-red-900" href="https://php-task-manager-ru.hexlet.app/task_statuses/1">
                                 Удалить                        </a>
-                            <a class="text-blue-600 hover:text-blue-900" href="https://php-task-manager-ru.hexlet.app/task_statuses/1/edit">
+                            <a class="text-blue-600 hover:text-blue-900" href="{{ route('task_statuses.edit', $status) }}">
                                 Изменить                        </a>                            
                         </td>
                         @endauth

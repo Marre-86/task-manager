@@ -50,19 +50,15 @@ class TaskStatusController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(TaskStatus $taskStatus)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(TaskStatus $taskStatus)
     {
-        //
+        if (!Auth::user()) {
+            abort(403);
+        }
+        $taskStatus = TaskStatus::findOrFail($taskStatus->id);
+        return view('task_status.edit', compact('taskStatus'));
     }
 
     /**
@@ -70,7 +66,19 @@ class TaskStatusController extends Controller
      */
     public function update(Request $request, TaskStatus $taskStatus)
     {
-        //
+        if (!Auth::user()) {
+            abort(403);
+        }
+        $taskStatus = TaskStatus::findOrFail($taskStatus->id);
+        $customMessages = [
+            'required' => 'Поле "имя" обязательно для заполнения'
+        ];
+        $data = $this->validate($request, [
+            'name' => 'required'], $customMessages);
+        $taskStatus->fill($data);
+        $taskStatus->save();
+        flash("Статус \"{$request->name}\" был обновлён");
+        return redirect()->route('task_statuses.index');
     }
 
     /**
