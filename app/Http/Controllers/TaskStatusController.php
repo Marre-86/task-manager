@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TaskStatus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TaskStatusController extends Controller
 {
@@ -21,6 +22,9 @@ class TaskStatusController extends Controller
      */
     public function create()
     {
+        if (!Auth::user()) {
+            abort(403);
+        }
         $taskStatus = new TaskStatus();
         return view('task_status.create', ['task_status' => $taskStatus]);
     }
@@ -30,6 +34,9 @@ class TaskStatusController extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::user()) {
+            abort(403);
+        }
         $customMessages = [
             'required' => 'Поле "имя" обязательно для заполнения'
         ];
