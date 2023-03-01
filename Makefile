@@ -10,7 +10,5 @@ generateKey:
 lint:
 	composer exec --verbose phpcs -- --standard=PSR12 app public routes tests --ignore=public/css,public/build/assets
 test:
-	composer exec --verbose phpunit tests
+	php artisan test --coverage --min=80
 tests: generateKey test
-test-coverage:
-	composer exec --verbose phpunit tests -- --coverage-clover build/logs/clover.xml
