@@ -86,6 +86,14 @@ class TaskStatusController extends Controller
      */
     public function destroy(TaskStatus $taskStatus)
     {
-        //
+        if (!Auth::user()) {
+            abort(403);
+        }
+        $taskStatus = TaskStatus::findOrFail($taskStatus->id);
+        if ($taskStatus) {
+            $taskStatus->delete();
+        }
+        flash("Статус \"{$taskStatus->name}\" был удалён");
+        return redirect()->route('task_statuses.index');
     }
 }

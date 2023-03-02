@@ -10,7 +10,7 @@ class StoreTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testDataCannotBeSendByGuest(): void
+    public function testDataCannotBeSentByGuest(): void
     {
         $response = $this
             ->post(route('task_statuses.store'), ['name' => '']);

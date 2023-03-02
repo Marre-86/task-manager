@@ -30,11 +30,12 @@
                         <td>{{ $status->name }}</td>
                         <td>{{ $status->created_at->format('d.m.Y') }}</td>
                         @auth
-                        <td>                            
-                            <a data-confirm="Вы уверены?" data-method="delete" class="text-red-600 hover:text-red-900" href="https://php-task-manager-ru.hexlet.app/task_statuses/1">
-                                Удалить                        </a>
+                        <td>      
                             <a class="text-blue-600 hover:text-blue-900" href="{{ route('task_statuses.edit', $status) }}">
-                                Изменить                        </a>                            
+                                Изменить                        </a>                          
+                            <a data-confirm="Вы уверены?" data-method="delete" class="text-red-600 hover:text-red-900"
+                               href="{{ route('task_statuses.destroy', $status) }}" style="margin-left:10px">
+                                Удалить                        </a>                        
                         </td>
                         @endauth
                     </tr> 

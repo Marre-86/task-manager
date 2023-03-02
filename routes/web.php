@@ -32,6 +32,6 @@ Route::middleware('auth')->group(function () {
 Route::get('tasks', 'App\Http\Controllers\TaskController@index')->name('tasks.index');
 
 // Route::get('task_statuses', 'App\Http\Controllers\TaskController@index')->name('task_statuses.index');
-Route::resource('task_statuses', TaskStatusController::class);
+Route::resource('task_statuses', TaskStatusController::class)->except(['show']);
 
 require __DIR__ . '/auth.php';

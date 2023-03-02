@@ -11,7 +11,7 @@ class UpdateTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testDataCannotBeSendByGuest(): void
+    public function testDataCannotBeSentByGuest(): void
     {
         $taskStatus = TaskStatus::factory()->create();
 
