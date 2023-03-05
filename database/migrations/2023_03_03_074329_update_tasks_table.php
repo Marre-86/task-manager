@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::table('tasks', function (Blueprint $table) {
             $table->text('description')->nullable();
             $table->integer('status_id')->nullable();
+            $table->integer('created_by_id')->nullable();
             $table->integer('assigned_to_id')->nullable();
             $table->foreign('assigned_to_id')
                 ->references('id')

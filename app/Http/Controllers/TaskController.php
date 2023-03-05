@@ -7,6 +7,7 @@ use App\Models\TaskStatus;
 use App\Models\User ;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class TaskController extends Controller
 {
@@ -32,7 +33,8 @@ class TaskController extends Controller
         $users = User::all()->sortBy('id');
         $label_options = ['null', 'ошибка', 'документация', 'документ', 'доработка'];
 
-        return view('task.create', ['task' => $task, 'statuses' => $statuses, 'users' => $users, 'label_options' => $label_options]);
+        return view('task.create', ['task' => $task, 'statuses' => $statuses,
+                                    'users' => $users, 'label_options' => $label_options]);
     }
 
     /**
@@ -43,19 +45,30 @@ class TaskController extends Controller
         if (!Auth::user()) {
             abort(403);
         }
+
         $customMessages = [
             'name.required' => 'Поле "имя" обязательно для заполнения',
             'status_id.required' => 'Необходимо указать статус'
         ];
-        $data = $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'status_id' => 'required',
             'assigned_to_id' => 'nullable',
-            'description' => 'nullable'], $customMessages);
+            'description' => 'nullable',
+        ], $customMessages);
+
+        if ($validator->fails()) {
+            return redirect(route('tasks.create'))
+                    ->withErrors($validator)
+                    ->withInput();
+        }
+
+        $data = $validator->validated();
         $task = new Task();
         $task->fill($data);
         $task->created_by_id = Auth::id();
         $task->save();
+
         flash("Задача \"{$request->name}\" была добавлена");
         return redirect()->route('tasks.index');
     }

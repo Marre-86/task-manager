@@ -52,7 +52,7 @@
       <option selected="selected" value="">----------</option>      
     @endif
     @foreach ($users as $user)    
-      @if ((old('assigned_to_id')) && ($loop->iteration == old('assigned_to_id')[0]))
+      @if ((old('assigned_to_id')) && ($user->id == old('assigned_to_id')[0]))
         <option selected="selected" value="{{ $user->id }}">{{ $user->name }}</option>
       @else
         <option value="{{ $user->id }}">{{ $user->name }}</option>
