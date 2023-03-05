@@ -42,20 +42,20 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($tasks as $task)
                     <tr class="border-b border-dashed text-left">
-                        <td>1</td>
-                        <td>в архиве</td>
+                        <td>{{ $task->id }}</td>
+                        <td>{{ $task->status->name }}</td>
                         <td>
                             <a class="text-blue-600 hover:text-blue-900" href="https://php-task-manager-ru.hexlet.app/tasks/1">
-                                Исправить ошибку в какой-нибудь строке
+                                {{ $task->name }}
                             </a>
                         </td>
-                        <td>Евсеев Григорий Дмитриевич</td>
-                        <td>Игнатьеваа Валерия Сергеевна</td>
-                        <td>26.02.2023</td>
-                        <td>
-                                            </td>
-                    </tr>           
+                        <td>{{ $task->created_by->name }}</td>
+                        <td>{{ $task->assigned_to->name }}</td>
+                        <td>{{ $task->created_at->format('d.m.Y') }}</td>
+                    </tr>
+                    @endforeach     
                 </tbody>
             </table>
             <div class="mt-4">
