@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskStatusController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
     return view('main');
 });
@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('tasks', 'App\Http\Controllers\TaskController@index')->name('tasks.index');
+Route::resource('tasks', TaskController::class);
 
 // Route::get('task_statuses', 'App\Http\Controllers\TaskController@index')->name('task_statuses.index');
 Route::resource('task_statuses', TaskStatusController::class)->except(['show']);

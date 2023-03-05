@@ -1,31 +1,33 @@
 <?php
 
-namespace Tests\Feature\TaskStatus;
+namespace Tests\Feature\Task;
 
 use App\Models\User;
+use App\Models\Task;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class CreateTest extends TestCase
+class EditTest extends TestCase
 {
     use RefreshDatabase;
 
     public function testCreationFormCanBeRendered(): void
     {
         $user = User::factory()->create();
+        $taskStatus = TaskStatus::factory()->create();
 
         $response = $this
             ->actingAs($user)
-            ->get(route('task_statuses.create'));
+            ->get(route('task_statuses.edit', $taskStatus));
 
         $response->assertOk();
-        $response->assertSee("Создать статус");
     }
 
     public function testCreationFormCanNotBeRenderedForGuest(): void
     {
+        $taskStatus = TaskStatus::factory()->create();
 
-        $response = $this->get(route('task_statuses.create'));
+        $response = $this->get(route('task_statuses.edit', $taskStatus));
 
         $response->assertStatus(403);
     }

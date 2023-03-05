@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\TaskStatus;
+namespace Tests\Feature\Task;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -16,16 +16,16 @@ class CreateTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->get(route('task_statuses.create'));
+            ->get(route('tasks.create'));
 
         $response->assertOk();
-        $response->assertSee("Создать статус");
+        $response->assertSee("Создать задачу");
     }
 
     public function testCreationFormCanNotBeRenderedForGuest(): void
     {
 
-        $response = $this->get(route('task_statuses.create'));
+        $response = $this->get(route('tasks.create'));
 
         $response->assertStatus(403);
     }

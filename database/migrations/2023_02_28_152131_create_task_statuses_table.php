@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name');
             // В будущем наверное понадобится поле. Создал заранее. Nullable нужно будет снять
             $table->bigInteger('task_id')->nullable();
-            $table->foreign('task_id')->references('id')->on('tasks');
             $table->timestamps();
         });
     }
