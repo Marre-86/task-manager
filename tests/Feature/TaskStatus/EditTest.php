@@ -11,7 +11,7 @@ class EditTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testCreationFormCanBeRendered(): void
+    public function testUpdateFormCanBeRendered(): void
     {
         $user = User::factory()->create();
         $taskStatus = TaskStatus::factory()->create();
@@ -23,7 +23,7 @@ class EditTest extends TestCase
         $response->assertOk();
     }
 
-    public function testCreationFormCanNotBeRenderedForGuest(): void
+    public function testUpdateFormCanNotBeRenderedForGuest(): void
     {
         $taskStatus = TaskStatus::factory()->create();
 

@@ -86,7 +86,15 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        if (!Auth::user()) {
+            abort(403);
+        }
+        $statuses = TaskStatus::all()->sortBy('id');
+        $users = User::all()->sortBy('id');
+        $label_options = ['null', 'ошибка', 'документация', 'документ', 'доработка'];
+
+        return view('task.edit', ['task' => $task, 'statuses' => $statuses,
+                                    'users' => $users, 'label_options' => $label_options]);
     }
 
     /**

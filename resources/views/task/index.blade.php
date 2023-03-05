@@ -39,6 +39,9 @@
                         <th>Автор</th>
                         <th>Исполнитель</th>
                         <th>Дата создания</th>
+                        @auth
+                        <th>Действия</th>
+                        @endauth
                     </tr>
                 </thead>
                 <tbody>
@@ -54,6 +57,17 @@
                         <td>{{ $task->created_by->name }}</td>
                         <td>{{ $task->assigned_to->name }}</td>
                         <td>{{ $task->created_at->format('d.m.Y') }}</td>
+                        @auth
+                        <td>      
+                            <a class="text-blue-600 hover:text-blue-900" href="{{ route('tasks.edit', $task) }}">
+                                Изменить                        </a>
+                            @if (Auth::id() === $task->created_by->id)                     
+                            <a data-confirm="Вы уверены?" data-method="delete" class="text-red-600 hover:text-red-900"
+                               href="{{ route('tasks.destroy', $task) }}" style="margin-left:10px">
+                                Удалить                        </a>
+                            @endif                     
+                        </td>
+                        @endauth
                     </tr>
                     @endforeach     
                 </tbody>
