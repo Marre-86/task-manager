@@ -102,7 +102,34 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        if (!Auth::user()) {
+            abort(403);
+        }
+        $task = Task::findOrFail($task->id);
+
+        $customMessages = [
+            'name.required' => 'Поле "имя" обязательно для заполнения',
+            'status_id.required' => 'Необходимо указать статус'
+        ];
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'status_id' => 'required',
+            'assigned_to_id' => 'nullable',
+            'description' => 'nullable',
+        ], $customMessages);
+
+        if ($validator->fails()) {
+            return redirect(route('tasks.edit', $task))
+                    ->withErrors($validator)
+                    ->withInput();
+        }
+
+        $data = $validator->validated();
+        $task->fill($data);
+        $task->save();
+
+        flash("Задача \"{$request->name}\" была обновлена");
+        return redirect()->route('tasks.index');
     }
 
     /**
