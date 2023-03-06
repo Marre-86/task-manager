@@ -90,6 +90,12 @@ class TaskStatusController extends Controller
             abort(403);
         }
         $taskStatus = TaskStatus::findOrFail($taskStatus->id);
+
+        if ($taskStatus->tasks->isNotEmpty()) {
+            flash("Не удалось удалить статус \"{$taskStatus->name}\"")->error();
+            return redirect()->route('task_statuses.index');
+        }
+
         if ($taskStatus) {
             $taskStatus->delete();
         }

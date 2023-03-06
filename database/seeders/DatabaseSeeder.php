@@ -28,6 +28,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'лыжный',
             'created_at' => time(),
         ]);
+        DB::table('task_statuses')->insert([
+            'name' => 'овощной',
+            'created_at' => time(),
+        ]);
 
         DB::table('tasks')->insert([
             'name' => 'путинахуйнуть',
@@ -41,6 +45,14 @@ class DatabaseSeeder extends Seeder
             'name' => 'Сделать растяжку',
             'description' => '',
             'status_id' => 2,
+            'created_by_id' => $user2->id,
+            'assigned_to_id' => $user1->id,
+            'created_at' => time(),
+        ]);
+        DB::table('tasks')->insert([
+            'name' => 'Полетать',
+            'description' => '',
+            'status_id' => 1,
             'created_by_id' => $user2->id,
             'assigned_to_id' => $user1->id,
             'created_at' => time(),
