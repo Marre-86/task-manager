@@ -50,7 +50,7 @@
                         <td>{{ $task->id }}</td>
                         <td>{{ $task->status->name }}</td>
                         <td>
-                            <a class="text-blue-600 hover:text-blue-900" href="https://php-task-manager-ru.hexlet.app/tasks/1">
+                            <a class="text-blue-600 hover:text-blue-900" href="{{ route('tasks.show', $task) }}">
                                 {{ $task->name }}
                             </a>
                         </td>
