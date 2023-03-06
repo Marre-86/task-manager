@@ -38,14 +38,14 @@ class TaskStatusController extends Controller
             abort(403);
         }
         $customMessages = [
-            'required' => 'Поле "имя" обязательно для заполнения'
+            'required' => __('validation.required_name')
         ];
         $data = $this->validate($request, [
             'name' => 'required'], $customMessages);
         $taskStatus = new TaskStatus();
         $taskStatus->fill($data);
         $taskStatus->save();
-        flash("Статус \"{$request->name}\" был добавлен");
+        flash(__('flashes.status_added', ['status' => $request->name]));
         return redirect()->route('task_statuses.index');
     }
 
@@ -71,13 +71,13 @@ class TaskStatusController extends Controller
         }
         $taskStatus = TaskStatus::findOrFail($taskStatus->id);
         $customMessages = [
-            'required' => 'Поле "имя" обязательно для заполнения'
+            'required' => __('validation.required_name')
         ];
         $data = $this->validate($request, [
             'name' => 'required'], $customMessages);
         $taskStatus->fill($data);
         $taskStatus->save();
-        flash("Статус \"{$request->name}\" был обновлён");
+        flash(__('flashes.status_updated', ['status' => $request->name]));
         return redirect()->route('task_statuses.index');
     }
 
@@ -92,14 +92,14 @@ class TaskStatusController extends Controller
         $taskStatus = TaskStatus::findOrFail($taskStatus->id);
 
         if ($taskStatus->tasks->isNotEmpty()) {
-            flash("Не удалось удалить статус \"{$taskStatus->name}\"")->error();
+            flash(__('flashes.status_non-deleted', ['status' => $taskStatus->name]))->error();
             return redirect()->route('task_statuses.index');
         }
 
         if ($taskStatus) {
             $taskStatus->delete();
         }
-        flash("Статус \"{$taskStatus->name}\" был удалён");
+        flash(__('flashes.status_deleted', ['status' => $taskStatus->name]));
         return redirect()->route('task_statuses.index');
     }
 }

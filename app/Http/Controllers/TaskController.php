@@ -47,8 +47,8 @@ class TaskController extends Controller
         }
 
         $customMessages = [
-            'name.required' => 'Поле "имя" обязательно для заполнения',
-            'status_id.required' => 'Необходимо указать статус'
+            'name.required' => __('validation.required_name'),
+            'status_id.required' => __('validation.required_status')
         ];
         $validator = Validator::make($request->all(), [
             'name' => 'required',
@@ -69,7 +69,7 @@ class TaskController extends Controller
         $task->created_by_id = Auth::id();
         $task->save();
 
-        flash("Задача \"{$request->name}\" была добавлена");
+        flash(__('flashes.task_added', ['task' => $request->name]));
         return redirect()->route('tasks.index');
     }
 
@@ -109,8 +109,8 @@ class TaskController extends Controller
         $task = Task::findOrFail($task->id);
 
         $customMessages = [
-            'name.required' => 'Поле "имя" обязательно для заполнения',
-            'status_id.required' => 'Необходимо указать статус'
+            'name.required' => __('validation.required_name'),
+            'status_id.required' => __('validation.required_status')
         ];
         $validator = Validator::make($request->all(), [
             'name' => 'required',
@@ -129,7 +129,7 @@ class TaskController extends Controller
         $task->fill($data);
         $task->save();
 
-        flash("Задача \"{$request->name}\" была обновлена");
+        flash(__('flashes.task_updated', ['task' => $request->name]));
         return redirect()->route('tasks.index');
     }
 
@@ -145,7 +145,7 @@ class TaskController extends Controller
         if ($task) {
             $task->delete();
         }
-        flash("Задача \"{$task->name}\" была удалена");
+        flash(__('flashes.task_deleted', ['task' => $task->name]));
         return redirect()->route('tasks.index');
     }
 }
