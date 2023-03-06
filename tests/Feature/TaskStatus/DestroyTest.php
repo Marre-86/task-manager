@@ -32,7 +32,7 @@ class DestroyTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->delete(route('task_statuses.destroy', $taskStatus->id));
+            ->delete(route('task_statuses.destroy', $taskStatus));
 
         $this->assertDatabaseMissing('task_statuses', ['name' => 'лыжный']);
     }

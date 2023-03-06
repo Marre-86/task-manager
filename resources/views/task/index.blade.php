@@ -55,7 +55,7 @@
                             </a>
                         </td>
                         <td>{{ $task->created_by->name }}</td>
-                        <td>{{ $task->assigned_to->name }}</td>
+                        <td>{{ $task->assigned_to->name ?? '' }}</td>
                         <td>{{ $task->created_at->format('d.m.Y') }}</td>
                         @auth
                         <td>      
