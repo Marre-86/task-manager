@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TaskStatus;
+use App\Models\Label;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class TaskStatusController extends Controller
+class LabelController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $taskStatuses = TaskStatus::paginate(20);
-        return view('task_status.index', compact('taskStatuses'));
+        $labels = Label::paginate(50);
+        return view('label.index', compact('labels'));
     }
 
     /**
@@ -25,8 +25,8 @@ class TaskStatusController extends Controller
         if (!Auth::user()) {
             abort(403);
         }
-        $taskStatus = new TaskStatus();
-        return view('task_status.create', ['task_status' => $taskStatus]);
+        $label = new Label();
+        return view('label.create', compact('label'));
     }
 
     /**
@@ -41,65 +41,67 @@ class TaskStatusController extends Controller
             'required' => __('validation.required_name')
         ];
         $data = $this->validate($request, [
-            'name' => 'required'], $customMessages);
-        $taskStatus = new TaskStatus();
-        $taskStatus->fill($data);
-        $taskStatus->save();
-        flash(__('flashes.status_added', ['status' => $request->name]));
-        return redirect()->route('task_statuses.index');
+            'name' => 'required',
+            'description' => 'nullable'], $customMessages);
+        $label = new Label();
+        $label->fill($data);
+        $label->save();
+        flash(__('flashes.label_added', ['label' => $request->name]));
+        return redirect()->route('labels.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(TaskStatus $taskStatus)
+    public function edit(Label $label)
     {
         if (!Auth::user()) {
             abort(403);
         }
-        $taskStatus = TaskStatus::findOrFail($taskStatus->id);
-        return view('task_status.edit', compact('taskStatus'));
+        $label = Label::findOrFail($label->id);
+        return view('label.edit', compact('label'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, TaskStatus $taskStatus)
+    public function update(Request $request, Label $label)
     {
         if (!Auth::user()) {
             abort(403);
         }
-        $taskStatus = TaskStatus::findOrFail($taskStatus->id);
+        $label = Label::findOrFail($label->id);
         $customMessages = [
             'required' => __('validation.required_name')
         ];
         $data = $this->validate($request, [
-            'name' => 'required'], $customMessages);
-        $taskStatus->fill($data);
-        $taskStatus->save();
-        flash(__('flashes.status_updated', ['status' => $request->name]));
-        return redirect()->route('task_statuses.index');
+            'name' => 'required',
+            'description' => 'nullable'], $customMessages);
+        $label->fill($data);
+        $label->save();
+        flash(__('flashes.label_updated', ['label' => $request->name]));
+        return redirect()->route('labels.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TaskStatus $taskStatus)
+    public function destroy(Label $label)
     {
         if (!Auth::user()) {
             abort(403);
         }
-        $taskStatus = TaskStatus::findOrFail($taskStatus->id);
-
+        $label = Label::findOrFail($label->id);
+/*
         if ($taskStatus->tasks->isNotEmpty()) {
             flash(__('flashes.status_non-deleted', ['status' => $taskStatus->name]))->error();
             return redirect()->route('task_statuses.index');
         }
-
-        if ($taskStatus) {
-            $taskStatus->delete();
+*/
+        if ($label) {
+            $label->delete();
         }
-        flash(__('flashes.status_deleted', ['status' => $taskStatus->name]));
-        return redirect()->route('task_statuses.index');
+        flash(__('flashes.label_deleted', ['label' => $label->name]));
+        return redirect()->route('labels.index');
     }
 }

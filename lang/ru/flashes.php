@@ -11,4 +11,10 @@ return [
     'task_updated' => 'Задача ":task" был обновлена',
     'task_deleted' => 'Задача ":task" был удалена',
 
+    'label_added' => 'Метка ":label" была добавлена',
+    'label_updated' => 'Метка ":label" была обновлена',
+    'label_deleted' => 'Метка ":label" была удалена',
+    'label_non-deleted' => 'Не удалось удалить метку ":label"',
+
+
 ];

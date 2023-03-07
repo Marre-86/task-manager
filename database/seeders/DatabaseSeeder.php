@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use App\Models\TaskStatus;
 use App\Models\Task;
 use App\Models\User;
+use App\Models\Label;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,6 +20,12 @@ class DatabaseSeeder extends Seeder
     {
         $user1 = User::factory()->create();
         $user2 = User::factory()->create();
+
+        Label::factory()->create();
+        Label::factory()->create([
+            'name' => 'Test Label',
+            'description' => 'anything is possible',
+        ]);
 
         DB::table('task_statuses')->insert([
             'name' => Str::random(10),

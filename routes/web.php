@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskStatusController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\LabelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +31,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('tasks', TaskController::class);
+
+Route::resource('labels', LabelController::class)->except(['show']);
 
 // Route::get('task_statuses', 'App\Http\Controllers\TaskController@index')->name('task_statuses.index');
 Route::resource('task_statuses', TaskStatusController::class)->except(['show']);
