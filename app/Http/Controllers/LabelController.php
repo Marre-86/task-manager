@@ -92,12 +92,12 @@ class LabelController extends Controller
             abort(403);
         }
         $label = Label::findOrFail($label->id);
-/*
-        if ($taskStatus->tasks->isNotEmpty()) {
-            flash(__('flashes.status_non-deleted', ['status' => $taskStatus->name]))->error();
-            return redirect()->route('task_statuses.index');
+
+        if ($label->tasks->isNotEmpty()) {
+            flash(__('flashes.label_non-deleted', ['label' => $label->name]))->error();
+            return redirect()->route('labels.index');
         }
-*/
+
         if ($label) {
             $label->delete();
         }

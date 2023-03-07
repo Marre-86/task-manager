@@ -21,22 +21,24 @@ class DestroyTest extends TestCase
 
         $response->assertStatus(403);
     }
-/*
+
     public function testLabelCannotBeDeletedIfUsedByTask(): void
     {
         $user = User::factory()->create();
-
-        $this->seed();
-
-        $taskStatus = TaskStatus::where('name', 'лыжный')->first();
+        $label = Label::factory()->create();
+        $task = Task::factory()->create();
+        $task->labels()->attach($label);
 
         $response = $this
+            ->followingRedirects()
             ->actingAs($user)
-            ->delete(route('task_statuses.destroy', $taskStatus));
+            ->delete(route('labels.destroy', $label));
 
-        $this->assertDatabaseHas('task_statuses', ['name' => 'лыжный']);
+        $response->assertSee(__('flashes.label_non-deleted', ['label' => $label->name]), false);
+
+        $this->assertDatabaseHas('labels', ['name' => $label->name, 'description' => $label->description]);
     }
-*/
+
     public function testLabelIsDeletedFromDatabase(): void
     {
         $user = User::factory()->create();

@@ -66,17 +66,19 @@
 </div>
 <div>
   <select multiple="multiple" name="labels[]" class="rounded border-gray-300 w-1/3 h-32" id="labels">
-  @if (old('labels') or isset($task))
+  @if (old('labels') or $task->labels->isNotEmpty())
     <option value=""></option>
   @else
     <option selected="selected" value=""></option>
   @endif
-  @for ($i = 1; $i <= count($label_options) - 1; $i++)
-    @if (((old('labels')) && ($i == old('labels')[0])) or (isset($task) && ($i == $task->labels)))
-        <option value="{{ $i }}" selected>{{ $label_options[$i] }}</option>
+  @foreach ($labelsDB as $labelDB)
+                                                                 
+    @if (((old('labels')) && (in_array($labelDB->id, old('labels')))) or (isset($task) && $task->labels->contains($labelDB)))
+        <option value="{{ $labelDB->id }}" selected>{{ $labelDB->name }}</option>
     @else
-        <option value="{{ $i }}">{{ $label_options[$i] }}</option>
+        <option value="{{ $labelDB->id }}">{{ $labelDB->name }}</option>
     @endif
-  @endfor
+                                                                     
+  @endforeach
   </select>
 </div>

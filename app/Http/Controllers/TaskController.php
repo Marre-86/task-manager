@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Models\TaskStatus;
-use App\Models\User ;
+use App\Models\User;
+use App\Models\Label;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -16,7 +17,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::paginate(5);
+        $tasks = Task::paginate(25);
         return response()->view('task.index', compact('tasks'));
     }
 
@@ -31,10 +32,10 @@ class TaskController extends Controller
         $task = new Task();
         $statuses = TaskStatus::all()->sortBy('id');
         $users = User::all()->sortBy('id');
-        $label_options = ['null', 'ошибка', 'документация', 'документ', 'доработка'];
+        $labels = Label::all()->sortBy('id');
 
         return view('task.create', ['task' => $task, 'statuses' => $statuses,
-                                    'users' => $users, 'label_options' => $label_options]);
+                                    'users' => $users, 'labelsDB' => $labels]);
     }
 
     /**
@@ -68,6 +69,7 @@ class TaskController extends Controller
         $task->fill($data);
         $task->created_by_id = Auth::id();
         $task->save();
+        $task->labels()->attach($request->input('labels'));
 
         flash(__('flashes.task_added', ['task' => $request->name]));
         return redirect()->route('tasks.index');
@@ -92,10 +94,10 @@ class TaskController extends Controller
         }
         $statuses = TaskStatus::all()->sortBy('id');
         $users = User::all()->sortBy('id');
-        $label_options = ['null', 'ошибка', 'документация', 'документ', 'доработка'];
+        $labels = Label::all()->sortBy('id');
 
         return view('task.edit', ['task' => $task, 'statuses' => $statuses,
-                                    'users' => $users, 'label_options' => $label_options]);
+                                    'users' => $users, 'labelsDB' => $labels]);
     }
 
     /**
@@ -128,6 +130,8 @@ class TaskController extends Controller
         $data = $validator->validated();
         $task->fill($data);
         $task->save();
+        $task->labels()->detach();
+        $task->labels()->attach($request->input('labels'));
 
         flash(__('flashes.task_updated', ['task' => $request->name]));
         return redirect()->route('tasks.index');
@@ -143,6 +147,7 @@ class TaskController extends Controller
         }
         $task = Task::findOrFail($task->id);
         if ($task) {
+            $task->labels()->detach();
             $task->delete();
         }
         flash(__('flashes.task_deleted', ['task' => $task->name]));

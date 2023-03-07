@@ -25,4 +25,9 @@ class Task extends Model
     {
         return $this->belongsTo('App\Models\\User');
     }
+
+    public function labels()
+    {
+        return $this->belongsToMany('App\Models\Label');
+    }
 }
