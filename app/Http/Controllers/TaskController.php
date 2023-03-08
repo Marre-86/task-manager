@@ -15,10 +15,32 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = Task::paginate(25);
-        return response()->view('task.index', compact('tasks'));
+        $statuses = TaskStatus::all()->sortBy('id');
+        $users = User::all()->sortBy('id');
+
+        $filter = $request->query('filter');
+
+        if ($filter !== null) {
+            $query = Task::query();
+            if ($filter['status_id']) {
+                $query->where('status_id', $filter['status_id']);
+            }
+            if ($filter['created_by_id']) {
+                $query->where('created_by_id', $filter['created_by_id']);
+            }
+            if ($filter['assigned_to_id']) {
+                $query->where('assigned_to_id', $filter['assigned_to_id']);
+            }
+            $tasks = $query->orderBy('id')->paginate(25);
+            return response()->view('task.index', ['tasks' => $tasks, 'statuses' => $statuses,
+                                                   'users' => $users, 'filter' => $filter]);
+        }
+
+        $tasks = Task::orderBy('id')->paginate(25);
+        return response()->view('task.index', ['tasks' => $tasks, 'statuses' => $statuses,
+                                               'users' => $users]);
     }
 
     /**
