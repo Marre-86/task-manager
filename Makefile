@@ -1,11 +1,11 @@
 go:
 	php artisan serve
 PORT ?= 6985
-railway: generate start
+railway: frontend start
 start:
 	PHP_CLI_SERVER_WORKERS=5 php -S 0.0.0.0:$(PORT)  -t public
-generate:
-	php artisan key:generate
+frontend:
+	npm install
 install:
 	composer install
 validate:
