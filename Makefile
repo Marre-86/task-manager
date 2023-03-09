@@ -1,6 +1,6 @@
 go:
 	php artisan serve
-PORT ?= 8000
+PORT ?= 6985
 start:
 	PHP_CLI_SERVER_WORKERS=5 php -S 0.0.0.0:$(PORT)  -t public
 install:
