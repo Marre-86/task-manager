@@ -1,8 +1,11 @@
 go:
 	php artisan serve
+railway: migrate start
 PORT ?= 6985
 start:
 	PHP_CLI_SERVER_WORKERS=5 php -S 0.0.0.0:$(PORT)  -t public
+mifrate:
+	php artisan migrate --force
 install:
 	composer install
 validate:
