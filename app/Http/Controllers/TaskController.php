@@ -91,7 +91,9 @@ class TaskController extends Controller
         $task->fill($data);
         $task->created_by_id = Auth::id();
         $task->save();
-        $task->labels()->attach($request->input('labels'));
+        $labelIDs = array_filter($request->input('labels'));
+
+        $task->labels()->attach($labelIDs);
 
         flash(__('flashes.task_added', ['task' => $request->name]));
         return redirect()->route('tasks.index');
@@ -153,7 +155,8 @@ class TaskController extends Controller
         $task->fill($data);
         $task->save();
         $task->labels()->detach();
-        $task->labels()->attach($request->input('labels'));
+        $labelIDs = array_filter($request->input('labels'));
+        $task->labels()->attach($labelIDs);
 
         flash(__('flashes.task_updated', ['task' => $request->name]));
         return redirect()->route('tasks.index');
