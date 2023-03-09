@@ -3,7 +3,15 @@
 <section class="bg-white">
     <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
         <div class="grid col-span-full">
-            <h1 class="mb-5">Задачи</h1>
+            <div>
+                <h1 style="display: inline-block;">Задачи</h1>
+                <div style="display: inline-block; position: fixed; right: 0; padding-right: 40px; padding-top: 20px">
+                    @auth
+                    <a href="{{ route('tasks.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+                        Создать задачу            </a>
+                    @endauth
+                </div>
+            </div>
             <div class="w-full flex items-center">
                 <div>
                     <form method="GET" action="{{ route('tasks.index', array('filter[status_id]' => 1, 
@@ -64,12 +72,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="ml-auto">
-                    @auth
-                    <a href="{{ route('tasks.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
-                        Создать задачу            </a>
-                    @endauth
-                </div>
+
             </div>
             <table class="mt-4">
                 <thead class="border-b-2 border-solid border-black text-left">

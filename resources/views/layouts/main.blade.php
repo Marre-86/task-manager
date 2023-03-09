@@ -15,7 +15,7 @@
     </head>
     <body>
         <div id="app">
-            <header class="fixed w-full">
+            <header class="fixed w-full"  style="position: relative;">
                 <nav class="bg-white border-gray-200 py-2.5 dark:bg-gray-900 shadow-md">
                     <div class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
                         <a href="/" class="flex items-center">
@@ -42,7 +42,7 @@
                         @endif
 
 
-                        <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1">
+                        <div class="items-center w-full lg:flex lg:w-auto lg:order-1">
                             <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                                 <li>
                                     <a href="{{ route('tasks.index') }}" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
@@ -62,14 +62,14 @@
                 </nav>
             </header>
 
-        <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 3000)">
+            <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 3000)">
             @if (session()->has('flash_notification'))
                 <div style="position: absolute; top: 12%; left: 0;  width: 100%; text-align: center">
                     @include('flash::message')    
                 </div>
             @endif
-        </div>
-
+            </div>
+        <div  style="margin-top: -60px">
             @yield('content')
         </div>
     </body>
