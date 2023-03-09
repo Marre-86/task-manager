@@ -68,7 +68,7 @@
   <select multiple="multiple" name="labels[]" class="rounded border-gray-300 w-1/3 h-32" id="labels">
   @if (old('labels') or $task->labels->isNotEmpty())
     <option value=""></option>
-  @else
+  @elseif ($labelsDB->isNotEmpty())
     <option selected="selected" value=""></option>
   @endif
   @foreach ($labelsDB as $labelDB)
