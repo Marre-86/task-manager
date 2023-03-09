@@ -1,11 +1,11 @@
 go:
 	php artisan serve
 PORT ?= 6985
-railway: frontend start
+railway: migrate start
 start:
 	PHP_CLI_SERVER_WORKERS=5 php -S 0.0.0.0:$(PORT)  -t public
-frontend:
-	npm install
+migrate:
+	php artisan migrate
 install:
 	composer install
 validate:
