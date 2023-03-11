@@ -14,63 +14,22 @@
             </div>
             <div class="w-full flex items-center">
                 <div>
-                    <form method="GET" action="{{ route('tasks.index', array('filter[status_id]' => 1, 
-                                                                             'filter[created_by_id]' => 'here',
-                                                                             'filter[assigned_to_id]' => 'there')) }}" accept-charset="UTF-8" class="">
+                    {{Form::open(['route' => 'tasks.index', 'method' => 'GET'])}}
                         <div class="flex">
                             <div>
-                                <select class="rounded border-gray-300" name="filter[status_id]">
-                                    @if (isset($filter) && isset($filter['status_id']))
-                                        <option value="">Статус</option>
-                                    @else
-                                        <option selected="selected" value="">Статус</option>
-                                    @endif
-                                  @foreach ($statuses as $status)
-                                    @if (isset($filter) && ($status->id == $filter['status_id']))
-                                    <option selected="selected" value="{{ $status->id }}">{{ $status->name }}</option>
-                                    @else
-                                    <option value="{{ $status->id }}">{{ $status->name }}</option>
-                                    @endif
-                                  @endforeach
-                                </select>
+                                {{Form::select('filter[status_id]', $statuses, $filter['status_id'] ?? null, ['placeholder' => 'Статус', 'class' => 'rounded border-gray-300'])}}
                             </div>
                             <div>
-                                <select class="ml-2 rounded border-gray-300" name="filter[created_by_id]">
-                                    @if (isset($filter) && isset($filter['created_by_id']))
-                                        <option value="">Автор</option>
-                                    @else
-                                        <option selected="selected" value="">Автор</option>
-                                    @endif
-                                  @foreach ($users as $user)
-                                    @if (isset($filter) && ($user->id == $filter['created_by_id']))
-                                    <option selected="selected" value="{{ $user->id }}">{{ $user->name }}</option>
-                                    @else
-                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                    @endif
-                                  @endforeach
-                                </select>
+                                {{Form::select('filter[created_by_id]', $users, $filter['created_by_id'] ?? null, ['placeholder' => 'Автор', 'class' => 'ml-2 rounded border-gray-300'])}}
                             </div>
                             <div>
-                                <select class="ml-2 rounded border-gray-300" name="filter[assigned_to_id]">
-                                    @if (isset($filter) && isset($filter['assigned_to_id']))
-                                        <option value="">Исполнитель</option>
-                                    @else
-                                        <option selected="selected" value="">Исполнитель</option>
-                                    @endif
-                                  @foreach ($users as $user)
-                                    @if (isset($filter) && ($user->id == $filter['assigned_to_id']))
-                                    <option selected="selected" value="{{ $user->id }}">{{ $user->name }}</option>
-                                    @else
-                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                    @endif
-                                  @endforeach
-                                </select>
+                                {{Form::select('filter[assigned_to_id]', $users, $filter['assigned_to_id'] ?? null, ['placeholder' => 'Исполнитель', 'class' => 'ml-2 rounded border-gray-300'])}}
                             </div>
                             <div>
-                                <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2" type="submit" value="Применить">
+                                {{ Form::submit('Применить', ['class' => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2']) }}
                             </div>                
                         </div>
-                    </form>
+                    {{Form::close()}}
                 </div>
 
             </div>

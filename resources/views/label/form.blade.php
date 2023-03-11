@@ -7,18 +7,16 @@
       </ul>
     </div>
 @endif
-
-                    <div>
-                        <label for="name">Имя</label>
-                    </div>
-                    <div class="mt-2">
-                        <input class="rounded border-gray-300 w-1/3" name="name" type="text"
-                        value="{{ $label->name }}" id="name">
-                    </div>
-                    <div class="mt-2">
-                        <label for="description">Описание</label>
-                    </div>
-                    <div class="mt-2">
-                        <textarea class="rounded border-gray-300 w-1/3 h-32" name="description" cols="50" rows="10"
-                          id="description">{{ old('description') ?? $label->description }}</textarea>
-                    </div>
+<div class="flex flex-col">
+  <div>
+    {{ Form::label('name', 'Имя') }}
+  </div>
+  <div class="mt-2">
+    {{Form::text('name', $label->name, ['class' => 'rounded border-gray-300 w-1/3'])}}
+  </div>
+  <div>
+    {{ Form::label('description', 'Описание') }}
+  </div>
+  <div class="mt-2">
+    {{Form::textarea('description', $label->description, ['class' => 'rounded border-gray-300 w-1/3 h-32', 'cols' => '50', 'rows' => '10'])}}
+  </div>

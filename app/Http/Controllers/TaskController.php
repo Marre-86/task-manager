@@ -17,8 +17,14 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-        $statuses = TaskStatus::all()->sortBy('id');
-        $users = User::all()->sortBy('id');
+        $statuses = TaskStatus::all()->sortBy('id')
+            ->mapWithKeys(function ($item, $key) {
+                return [$item['id'] => $item['name']];
+            })->all();
+        $users = User::all()->sortBy('id')
+            ->mapWithKeys(function ($item, $key) {
+                return [$item['id'] => $item['name']];
+            })->all();
 
         $filter = $request->query('filter');
 
@@ -52,9 +58,15 @@ class TaskController extends Controller
             abort(403);
         }
         $task = new Task();
-        $statuses = TaskStatus::all()->sortBy('id');
-        $users = User::all()->sortBy('id');
-        $labels = Label::all()->sortBy('id');
+        $statuses = TaskStatus::all()->sortBy('id')
+            ->mapWithKeys(function ($item, $key) {
+                return [$item['id'] => $item['name']];
+            })->all();
+        $users = User::all()->sortBy('id')
+            ->mapWithKeys(function ($item, $key) {
+                return [$item['id'] => $item['name']];
+            })->all();
+            $labels = Label::all()->sortBy('id');
 
         return view('task.create', ['task' => $task, 'statuses' => $statuses,
                                     'users' => $users, 'labelsDB' => $labels]);
@@ -92,7 +104,6 @@ class TaskController extends Controller
         $task->created_by_id = Auth::id();
         $task->save();
         $labelIDs = array_filter($request->input('labels'));
-
         $task->labels()->attach($labelIDs);
 
         flash(__('flashes.task_added', ['task' => $request->name]));
@@ -116,8 +127,14 @@ class TaskController extends Controller
         if (!Auth::user()) {
             abort(403);
         }
-        $statuses = TaskStatus::all()->sortBy('id');
-        $users = User::all()->sortBy('id');
+        $statuses = TaskStatus::all()->sortBy('id')
+            ->mapWithKeys(function ($item, $key) {
+                return [$item['id'] => $item['name']];
+            })->all();
+        $users = User::all()->sortBy('id')
+            ->mapWithKeys(function ($item, $key) {
+                return [$item['id'] => $item['name']];
+            })->all();
         $labels = Label::all()->sortBy('id');
 
         return view('task.edit', ['task' => $task, 'statuses' => $statuses,

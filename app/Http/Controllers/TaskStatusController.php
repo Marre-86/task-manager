@@ -26,7 +26,7 @@ class TaskStatusController extends Controller
             abort(403);
         }
         $taskStatus = new TaskStatus();
-        return view('task_status.create', ['task_status' => $taskStatus]);
+        return view('task_status.create', compact('taskStatus'));
     }
 
     /**

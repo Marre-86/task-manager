@@ -57,14 +57,14 @@ class StoreTest extends TestCase
             ->actingAs($user)
             ->followingRedirects()
             ->post(route('tasks.store'), ['name' => '', 'status_id' => '2']);
-        $expected = '<option selected="selected" value="2">лыжный</option>';
+        $expected = '<option value="2" selected="selected">лыжный</option>';
         $response->assertSee($expected, false);
 
         $response = $this
             ->actingAs($user)
             ->followingRedirects()
             ->post(route('tasks.store'), ['name' => '', 'assigned_to_id' => '1']);
-        $expected = "<option selected=\"selected\" value=\"{$user->id}\">{$user->name}</option>";
+        $expected = "<option value=\"{$user->id}\" selected=\"selected\">{$user->name}</option>";
          $response->assertSee($expected, false);
     }
 

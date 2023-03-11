@@ -5,15 +5,13 @@
         <div class="grid col-span-full">
             <h1 class="mb-5">Создать метку</h1>
 
-            <form method="POST" action="{{ route('labels.store') }}" accept-charset="UTF-8" class="w-50">
-              @csrf
-                <div class="flex flex-col">
+            {{ Form::model($label, ['route' => 'labels.store'], ['class' => 'w-50']) }}
                     @include('label.form')
-                    <div class="mt-2">
-                        <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" value="Создать">
+                        <div class="mt-2">
+                            {{ Form::submit('Создать', ['class' => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded']) }}
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
 
         </div>
     </div>
