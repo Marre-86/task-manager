@@ -66,10 +66,13 @@ class TaskController extends Controller
             ->mapWithKeys(function ($item, $key) {
                 return [$item['id'] => $item['name']];
             })->all();
-            $labels = Label::all()->sortBy('id');
+        $labels = Label::all()->sortBy('id')
+            ->mapWithKeys(function ($item, $key) {
+                return [$item['id'] => $item['name']];
+            })->all();
 
         return view('task.create', ['task' => $task, 'statuses' => $statuses,
-                                    'users' => $users, 'labelsDB' => $labels]);
+                                    'users' => $users, 'labelsDB' => $labels,]);
     }
 
     /**
@@ -135,7 +138,10 @@ class TaskController extends Controller
             ->mapWithKeys(function ($item, $key) {
                 return [$item['id'] => $item['name']];
             })->all();
-        $labels = Label::all()->sortBy('id');
+        $labels = Label::all()->sortBy('id')
+            ->mapWithKeys(function ($item, $key) {
+                return [$item['id'] => $item['name']];
+            })->all();
 
         return view('task.edit', ['task' => $task, 'statuses' => $statuses,
                                     'users' => $users, 'labelsDB' => $labels]);
