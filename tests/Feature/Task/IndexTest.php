@@ -11,7 +11,7 @@ class IndexTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testDatabaseTasksAreRendered(): void
+    public function testTasksAreRendered(): void
     {
         $this->seed();
 
@@ -19,8 +19,37 @@ class IndexTest extends TestCase
         $response = $this
             ->get(route('tasks.index'));
 
-            $response->assertSee($task->name);
-            $response->assertSee($task->status->name);
-            $response->assertSee($task->created_by->name);
+        $response->assertSee($task->name);
+        $response->assertSee($task->status->name);
+        $response->assertSee($task->created_by->name);
+    }
+
+    public function testFilteringIsWorking1(): void
+    {
+        $this->seed();
+
+        $task = Task::where('status_id', 1)->first();
+        $taskNotSee = Task::where('status_id', 2)->first();
+        $response = $this
+            ->get(route('tasks.index') . "?filter%5Bstatus_id%5D={$task->status->id}&filter%5Bcreated_by_id%5D=&filter%5Bassigned_to_id%5D=");  // phpcs:ignore
+        $response->assertSee($task->name);
+        $response->assertSee($task->status->name);
+        $response->assertSee($task->created_by->name);
+        $response->assertDontSee($taskNotSee->name);
+    }
+
+    public function testFilteringIsWorking2(): void
+    {
+        $this->seed();
+        $user = User::factory()->create();
+        $task1 = Task::where('name', 'путинахуйнуть')->first();
+        $task2 = Task::where('name', 'Сделать растяжку')->first();
+        $task3 = Task::where('name', 'Полетать')->first();
+
+        $response = $this
+            ->get(route('tasks.index') . "?filter%5Bstatus_id%5D={$task1->status->id}&filter%5Bcreated_by_id%5D={$user->id}&filter%5Bassigned_to_id%5D={$user->id}");  // phpcs:ignore
+        $response->assertDontSee($task1->name);
+        $response->assertDontSee($task2->name);
+        $response->assertDontSee($task3->name);
     }
 }
