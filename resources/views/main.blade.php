@@ -8,8 +8,12 @@
                         <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl">
                             Это простой менеджер задач на Laravel </p>
                         <div class="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
+                            <a href="https://github.com/Marre-86/php-project-57" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" target="_blank">
+                                Исходный код </a>
+                         <div class="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
                             <a href="https://ru.hexlet.io/u/artem_pokhiliuk" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" target="_blank">
-                                Нажми меня </a>
+                                Об авторе </a>
+                        </div>  
                         </div>  
                     </div>
                 </div>
