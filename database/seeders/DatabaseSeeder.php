@@ -27,48 +27,36 @@ class DatabaseSeeder extends Seeder
             'description' => 'anything is possible',
         ]);
 
-        DB::table('task_statuses')->insert([
+        TaskStatus::factory()->create([
             'name' => Str::random(10),
-            'created_at' => time(),
         ]);
-        DB::table('task_statuses')->insert([
+        TaskStatus::factory()->create([
             'name' => 'лыжный',
-            'created_at' => time(),
         ]);
-        DB::table('task_statuses')->insert([
+        TaskStatus::factory()->create([
             'name' => 'овощной',
-            'created_at' => time(),
         ]);
 
-        DB::table('tasks')->insert([
+        Task::factory()->create([
             'name' => 'путинахуйнуть',
             'description' => 'такчтобнедёргался',
             'status_id' => 1,
             'created_by_id' => $user1->id,
             'assigned_to_id' => $user2->id,
-            'created_at' => time(),
         ]);
-        DB::table('tasks')->insert([
+        Task::factory()->create([
             'name' => 'Сделать растяжку',
             'description' => '',
             'status_id' => 2,
             'created_by_id' => $user2->id,
             'assigned_to_id' => $user1->id,
-            'created_at' => time(),
         ]);
-        DB::table('tasks')->insert([
+        Task::factory()->create([
             'name' => 'Полетать',
             'description' => '',
             'status_id' => 1,
             'created_by_id' => $user2->id,
             'assigned_to_id' => $user1->id,
-            'created_at' => time(),
         ]);
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }
