@@ -8,7 +8,7 @@ jobs:
       - name: Install
         run: make install
       - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.testing', '.env');"
+        run: php -r "file_exists('.env') || copy('.env.testing.1', '.env');"
       - name: Generate key
         run: php artisan key:generate --env=testing
       - name: Run linter
