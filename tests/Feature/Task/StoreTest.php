@@ -35,7 +35,9 @@ class StoreTest extends TestCase
 
     public function testFormRepopulatesWhenValidationFails(): void
     {
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'name' => 'Jessy D\'Amore',
+        ]);
 
         $response = $this
             ->actingAs($user)
@@ -64,7 +66,8 @@ class StoreTest extends TestCase
             ->actingAs($user)
             ->followingRedirects()
             ->post(route('tasks.store'), ['name' => '', 'assigned_to_id' => '1']);
-        $expected = "<option value=\"{$user->id}\" selected=\"selected\">{$user->name}</option>";
+        $usernameHtmlEncoded = e($user->name);
+        $expected = "<option value=\"{$user->id}\" selected=\"selected\">$usernameHtmlEncoded</option>";
          $response->assertSee($expected, false);
     }
 
