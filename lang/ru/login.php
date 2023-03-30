@@ -7,6 +7,7 @@ return [
     'remember_me' => 'Запомнить меня',
     'forgot_your_password' => 'Забыли пароль?',
     'log_in' => 'Войти',
+    'reset_link' => 'Сбросить пароль'
 
 
 ];

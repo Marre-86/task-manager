@@ -34,12 +34,15 @@
 
         <div class="flex items-center justify-end mt-4">
             @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md 
+                          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    href="{{ route('password.request') }}">
                     {{ __('login.forgot_your_password') }}
                 </a>
             @endif
 
-            <button type="submit" class="inline-flex items-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4">
+            <button type="submit" class="inline-flex items-center bg-blue-500 hover:bg-blue-700 
+             text-white font-bold py-2 px-4 rounded ml-3">
                 {{ __('login.log_in') }}
             </button>
         </div>
