@@ -2,19 +2,19 @@
 
 return [
 
-    'status_added' => 'Статус ":status" был добавлен',
-    'status_updated' => 'Статус ":status" был обновлён',
-    'status_deleted' => 'Статус ":status" был удалён',
-    'status_non-deleted' => 'Не удалось удалить статус ":status"',
+    'status_added' => 'Статус успешно создан',
+    'status_updated' => 'Статус успешно изменён',
+    'status_deleted' => 'Статус успешно удалён',
+    'status_non-deleted' => 'Не удалось удалить статус',
 
-    'task_added' => 'Задача ":task" был добавлена',
-    'task_updated' => 'Задача ":task" был обновлена',
-    'task_deleted' => 'Задача ":task" был удалена',
+    'task_added' => 'Задача успешно создана',
+    'task_updated' => 'Задача успешно изменена',
+    'task_deleted' => 'Задача успешно удалена',
 
-    'label_added' => 'Метка ":label" была добавлена',
-    'label_updated' => 'Метка ":label" была обновлена',
-    'label_deleted' => 'Метка ":label" была удалена',
-    'label_non-deleted' => 'Не удалось удалить метку ":label"',
+    'label_added' => 'Метка успешно создана',
+    'label_updated' => 'Метка успешно изменена',
+    'label_deleted' => 'Метка успешно удалена',
+    'label_non-deleted' => 'Не удалось удалить метку',
 
 
 ];
