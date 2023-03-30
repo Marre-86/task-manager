@@ -1,7 +1,9 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-
+    <h2 class="text-center">
+        <a href="/">Менеджер задач</a>
+    </h2>
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
