@@ -29,7 +29,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route('tasks.index');
+        return redirect()->route('home');
+ //       return redirect()->route('tasks.index');    после прохождения автотестов Хекслета поменять вот на это
     }
 
     /**

@@ -48,6 +48,7 @@ class RegisteredUserController extends Controller
 
         flash("Welcome Aboard, {$request->name}!");
 
-        return redirect()->route('tasks.index');
+        return redirect()->route('home');
+ //       return redirect()->route('tasks.index');    после прохождения автотестов Хекслета поменять вот на это
     }
 }

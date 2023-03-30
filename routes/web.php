@@ -20,7 +20,7 @@ use Illuminate\Http\Request;
 Route::get('/', function (Request $request) {
     \Log::debug($request->ip());
     return view('main');
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
