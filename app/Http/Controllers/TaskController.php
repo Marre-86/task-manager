@@ -107,9 +107,12 @@ class TaskController extends Controller
         $task->fill($data);
         $task->created_by_id = Auth::id();
         $task->save();
-        $labelIDs = array_filter($request->input('labels'));
-        $task->labels()->attach($labelIDs);
 
+        if (($request->input('labels')) !== null) {
+            $labelIDs = array_filter($request->input('labels'));
+            $task->labels()->attach($labelIDs);
+        }
+        
         flash(__('flashes.task_added', ['task' => $request->name]));
         return redirect()->route('tasks.index');
     }
