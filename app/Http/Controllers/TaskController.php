@@ -182,9 +182,9 @@ class TaskController extends Controller
         $data = $validator->validated();
         $task->fill($data);
         $task->save();
-
+        
+        $task->labels()->detach();
         if (($request->input('labels')) !== null) {
-            $task->labels()->detach();
             $labelIDs = array_filter($request->input('labels'));
             $task->labels()->attach($labelIDs);
         }
