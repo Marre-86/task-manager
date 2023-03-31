@@ -38,10 +38,11 @@ class TaskStatusController extends Controller
             abort(403);
         }
         $customMessages = [
-            'required' => __('validation.required_name')
+            'required' => __('validation.required_name'),
+            'unique' => __('validation.unique_status')
         ];
         $data = $this->validate($request, [
-            'name' => 'required'], $customMessages);
+            'name' => 'required|unique:task_statuses'], $customMessages);
         $taskStatus = new TaskStatus();
         $taskStatus->fill($data);
         $taskStatus->save();
