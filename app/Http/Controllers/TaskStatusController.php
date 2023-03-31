@@ -39,7 +39,7 @@ class TaskStatusController extends Controller
         }
         $customMessages = [
             'required' => __('validation.required_name'),
-            'unique' => __('validation.unique_status')
+            'unique' => __('validation.unique_entity', ['entity' => 'Статус'])
         ];
         $data = $this->validate($request, [
             'name' => 'required|unique:task_statuses'], $customMessages);
@@ -72,10 +72,11 @@ class TaskStatusController extends Controller
         }
         $taskStatus = TaskStatus::findOrFail($taskStatus->id);
         $customMessages = [
-            'required' => __('validation.required_name')
+            'required' => __('validation.required_name'),
+            'unique' => __('validation.unique_entity', ['entity' => 'Статус'])
         ];
         $data = $this->validate($request, [
-            'name' => 'required'], $customMessages);
+            'name' => 'required|unique:task_statuses'], $customMessages);
         $taskStatus->fill($data);
         $taskStatus->save();
         flash(__('flashes.status_updated', ['status' => $request->name]));

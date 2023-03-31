@@ -38,10 +38,11 @@ class LabelController extends Controller
             abort(403);
         }
         $customMessages = [
-            'required' => __('validation.required_name')
+            'required' => __('validation.required_name'),
+            'unique' => __('validation.unique_entity', ['entity' => 'Метка'])
         ];
         $data = $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|unique:labels',
             'description' => 'nullable'], $customMessages);
         $label = new Label();
         $label->fill($data);
@@ -72,10 +73,11 @@ class LabelController extends Controller
         }
         $label = Label::findOrFail($label->id);
         $customMessages = [
-            'required' => __('validation.required_name')
+            'required' => __('validation.required_name'),
+            'unique' => __('validation.unique_entity', ['entity' => 'Метка'])
         ];
         $data = $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|unique:labels',
             'description' => 'nullable'], $customMessages);
         $label->fill($data);
         $label->save();

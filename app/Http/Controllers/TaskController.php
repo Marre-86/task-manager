@@ -86,10 +86,11 @@ class TaskController extends Controller
 
         $customMessages = [
             'name.required' => __('validation.required_name'),
+            'name.unique' => __('validation.unique_entity', ['entity' => 'Задача']),
             'status_id.required' => __('validation.required_status')
         ];
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'name' => 'required|unique:tasks',
             'status_id' => 'required',
             'assigned_to_id' => 'nullable',
             'description' => 'nullable',
@@ -159,10 +160,11 @@ class TaskController extends Controller
 
         $customMessages = [
             'name.required' => __('validation.required_name'),
+            'name.unique' => __('validation.unique_entity', ['entity' => 'Задача']),
             'status_id.required' => __('validation.required_status')
         ];
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'name' => 'required|unique:tasks',
             'status_id' => 'required',
             'assigned_to_id' => 'nullable',
             'description' => 'nullable',
