@@ -100,9 +100,8 @@ class LabelController extends Controller
             return redirect()->route('labels.index');
         }
 
-        if ($label !== null) {
-            $label->delete();
-        }
+        $label->delete();
+
         flash(__('flashes.label_deleted', ['label' => $label->name]));
         return redirect()->route('labels.index');
     }

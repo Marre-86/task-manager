@@ -98,9 +98,8 @@ class TaskStatusController extends Controller
             return redirect()->route('task_statuses.index');
         }
 
-        if ($taskStatus !== null) {
-            $taskStatus->delete();
-        }
+        $taskStatus->delete();
+
         flash(__('flashes.status_deleted', ['status' => $taskStatus->name]));
         return redirect()->route('task_statuses.index');
     }

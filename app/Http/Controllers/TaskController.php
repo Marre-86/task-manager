@@ -202,10 +202,9 @@ class TaskController extends Controller
             abort(403);
         }
         $task = Task::findOrFail($task->id);
-        if ($task !== null) {
-            $task->labels()->detach();
-            $task->delete();
-        }
+        $task->labels()->detach();
+        $task->delete();
+
         flash(__('flashes.task_deleted', ['task' => $task->name]));
         return redirect()->route('tasks.index');
     }
