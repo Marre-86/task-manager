@@ -22,7 +22,7 @@ class LabelController extends Controller
      */
     public function create()
     {
-        if (!Auth::user()) {
+        if (Auth::user() === null) {
             abort(403);
         }
         $label = new Label();
@@ -34,7 +34,7 @@ class LabelController extends Controller
      */
     public function store(Request $request)
     {
-        if (!Auth::user()) {
+        if (Auth::user() === null) {
             abort(403);
         }
         $customMessages = [
@@ -56,7 +56,7 @@ class LabelController extends Controller
      */
     public function edit(Label $label)
     {
-        if (!Auth::user()) {
+        if (Auth::user() === null) {
             abort(403);
         }
         $label = Label::findOrFail($label->id);
@@ -68,7 +68,7 @@ class LabelController extends Controller
      */
     public function update(Request $request, Label $label)
     {
-        if (!Auth::user()) {
+        if (Auth::user() === null) {
             abort(403);
         }
         $label = Label::findOrFail($label->id);
@@ -90,7 +90,7 @@ class LabelController extends Controller
      */
     public function destroy(Label $label)
     {
-        if (!Auth::user()) {
+        if (Auth::user() === null) {
             abort(403);
         }
         $label = Label::findOrFail($label->id);
@@ -100,7 +100,7 @@ class LabelController extends Controller
             return redirect()->route('labels.index');
         }
 
-        if ($label) {
+        if ($label !== null) {
             $label->delete();
         }
         flash(__('flashes.label_deleted', ['label' => $label->name]));

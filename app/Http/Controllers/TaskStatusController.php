@@ -22,7 +22,7 @@ class TaskStatusController extends Controller
      */
     public function create()
     {
-        if (!Auth::user()) {
+        if (Auth::user() === null) {
             abort(403);
         }
         $taskStatus = new TaskStatus();
@@ -34,7 +34,7 @@ class TaskStatusController extends Controller
      */
     public function store(Request $request)
     {
-        if (!Auth::user()) {
+        if (Auth::user() === null) {
             abort(403);
         }
         $customMessages = [
@@ -55,7 +55,7 @@ class TaskStatusController extends Controller
      */
     public function edit(TaskStatus $taskStatus)
     {
-        if (!Auth::user()) {
+        if (Auth::user() === null) {
             abort(403);
         }
         $taskStatus = TaskStatus::findOrFail($taskStatus->id);
@@ -67,7 +67,7 @@ class TaskStatusController extends Controller
      */
     public function update(Request $request, TaskStatus $taskStatus)
     {
-        if (!Auth::user()) {
+        if (Auth::user() === null) {
             abort(403);
         }
         $taskStatus = TaskStatus::findOrFail($taskStatus->id);
@@ -88,7 +88,7 @@ class TaskStatusController extends Controller
      */
     public function destroy(TaskStatus $taskStatus)
     {
-        if (!Auth::user()) {
+        if (Auth::user() === null) {
             abort(403);
         }
         $taskStatus = TaskStatus::findOrFail($taskStatus->id);
@@ -98,7 +98,7 @@ class TaskStatusController extends Controller
             return redirect()->route('task_statuses.index');
         }
 
-        if ($taskStatus) {
+        if ($taskStatus !== null) {
             $taskStatus->delete();
         }
         flash(__('flashes.status_deleted', ['status' => $taskStatus->name]));

@@ -54,7 +54,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        if (!Auth::user()) {
+        if (Auth::user() === null) {
             abort(403);
         }
         $task = new Task();
@@ -80,7 +80,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        if (!Auth::user()) {
+        if (Auth::user() === null) {
             abort(403);
         }
 
@@ -131,7 +131,7 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        if (!Auth::user()) {
+        if (Auth::user() === null) {
             abort(403);
         }
         $statuses = TaskStatus::all()->sortBy('id')
@@ -156,7 +156,7 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        if (!Auth::user()) {
+        if (Auth::user() === null) {
             abort(403);
         }
         $task = Task::findOrFail($task->id);
@@ -198,11 +198,11 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        if (!Auth::user() or (Auth::id() !== $task->created_by->id)) {
+        if ((Auth::user() === null) or (Auth::id() !== $task->created_by->id)) {
             abort(403);
         }
         $task = Task::findOrFail($task->id);
-        if ($task) {
+        if ($task !== null) {
             $task->labels()->detach();
             $task->delete();
         }
