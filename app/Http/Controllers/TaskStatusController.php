@@ -76,7 +76,7 @@ class TaskStatusController extends Controller
             'unique' => __('validation.unique_entity', ['entity' => 'Статус'])
         ];
         $data = $this->validate($request, [
-            'name' => 'required|unique:task_statuses'], $customMessages);
+            'name' => 'required|unique:task_statuses,name,' . $taskStatus->id], $customMessages);
         $taskStatus->fill($data);
         $taskStatus->save();
         flash(__('flashes.status_updated', ['status' => $request->name]));

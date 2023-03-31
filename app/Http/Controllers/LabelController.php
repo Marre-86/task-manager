@@ -77,7 +77,7 @@ class LabelController extends Controller
             'unique' => __('validation.unique_entity', ['entity' => 'Метка'])
         ];
         $data = $this->validate($request, [
-            'name' => 'required|unique:labels',
+            'name' => 'required|unique:labels,name,' . $label->id,
             'description' => 'nullable'], $customMessages);
         $label->fill($data);
         $label->save();

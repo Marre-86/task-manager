@@ -112,7 +112,7 @@ class TaskController extends Controller
             $labelIDs = array_filter($request->input('labels'));
             $task->labels()->attach($labelIDs);
         }
-        
+
         flash(__('flashes.task_added', ['task' => $request->name]));
         return redirect()->route('tasks.index');
     }
@@ -167,7 +167,7 @@ class TaskController extends Controller
             'status_id.required' => __('validation.required_status')
         ];
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:tasks',
+            'name' => 'required|unique:tasks,name,' . $task->id,
             'status_id' => 'required',
             'assigned_to_id' => 'nullable',
             'description' => 'nullable',
@@ -182,9 +182,12 @@ class TaskController extends Controller
         $data = $validator->validated();
         $task->fill($data);
         $task->save();
-        $task->labels()->detach();
-        $labelIDs = array_filter($request->input('labels'));
-        $task->labels()->attach($labelIDs);
+
+        if (($request->input('labels')) !== null) {
+            $task->labels()->detach();
+            $labelIDs = array_filter($request->input('labels'));
+            $task->labels()->attach($labelIDs);
+        }
 
         flash(__('flashes.task_updated', ['task' => $request->name]));
         return redirect()->route('tasks.index');
