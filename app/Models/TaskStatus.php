@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * App\Models\TaskStatus
  *
- * @property \Illuminate\Database\Eloquent\Relations\HasMany $tasks
+ * @property mixed $tasks
  * @property string $description
  * @property TaskStatus $status
  * @property User $assigned_to
