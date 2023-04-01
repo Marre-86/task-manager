@@ -15,7 +15,7 @@ class ProfileUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        $ignoredID = $this->user() ? $this->user()->id : null;
+        $ignoredID = $this->user() !== null ? $this->user()->id : null;
         return [
             'name' => ['string', 'max:255'],
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($ignoredID)],

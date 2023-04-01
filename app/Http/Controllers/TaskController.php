@@ -28,7 +28,7 @@ class TaskController extends Controller
 
         $filter = $request->query('filter');
 
-        if ($filter !== null) {
+        if (is_array($filter)) {
             $query = Task::query();
             if ($filter['status_id']) {
                 $query->where('status_id', $filter['status_id']);
@@ -105,7 +105,7 @@ class TaskController extends Controller
         $data = $validator->validated();
         $task = new Task();
         $task->fill($data);
-        $task->created_by_id = Auth::id();
+        $task->created_by_id = Auth::id() ?? 99999;
         $task->save();
 
         if (($request->input('labels')) !== null) {
