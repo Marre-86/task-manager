@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * App\Models\TaskStatus
  *
- * @property \Illuminate\Database\Eloquent\Relations\HasMany; $tasks
+ * @property \Illuminate\Database\Eloquent\Relations\HasMany $tasks
  * @property string $description
- * @property string $name
+ * @property TaskStatus $status
+ * @property User $assigned_to
+ * @property \Illuminate\Database\Eloquent\Relations\BelongsToMany $labels
  */
 
 class TaskStatus extends Model
