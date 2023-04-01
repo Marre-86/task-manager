@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * App\Models\Task
  *
- * @property string $status
- * @property string $created_by
+ * @property App\Models\TaskStatus|null $status
+ * @property App\Models\User|null $created_by
  */
 
 class Task extends Model
