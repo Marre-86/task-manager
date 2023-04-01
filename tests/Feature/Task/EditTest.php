@@ -20,6 +20,7 @@ class EditTest extends TestCase
             ->get(route('tasks.edit', $task));
 
         $response->assertOk();
+
         $expectedName = "value=\"{$task->name}\"";
         $expectedDescription = $task->description;
         $expectedStatus = "<option value=\"{$task->status->id}\" selected=\"selected\">{$task->status->name}</option>";
