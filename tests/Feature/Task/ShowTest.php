@@ -18,9 +18,9 @@ class ShowTest extends TestCase
         $response = $this
             ->get(route('tasks.show', $task));
 
-            $response->assertOk();
-            $response->assertSee($task->name);
-            $response->assertSee($task->description);
-            $response->assertSee($task->status->name);
+        $response->assertOk();
+        $response->assertSee($task->name);
+        $response->assertSee($task->description ?? '');
+        $response->assertSee($task->status->name);
     }
 }

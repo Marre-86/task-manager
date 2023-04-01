@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $description
  * @property TaskStatus $status
  * @property User $assigned_to
- * @property \Illuminate\Database\Eloquent\Relations\BelongsToMany $labels
+ * @property mixed $labels
  */
 
 class TaskStatus extends Model
