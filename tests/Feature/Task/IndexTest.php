@@ -15,7 +15,7 @@ class IndexTest extends TestCase
     {
         $this->seed();
 
-        $task = Task::first();
+        $task = Task::firstOrFail();
         $response = $this
             ->get(route('tasks.index'));
 
@@ -28,8 +28,8 @@ class IndexTest extends TestCase
     {
         $this->seed();
 
-        $task = Task::where('status_id', 1)->first();
-        $taskNotSee = Task::where('status_id', 2)->first();
+        $task = Task::where('status_id', 1)->firstOrFail();
+        $taskNotSee = Task::where('status_id', 2)->firstOrFail();
         $response = $this
             ->get(route('tasks.index') . "?filter%5Bstatus_id%5D={$task->status->id}&filter%5Bcreated_by_id%5D=&filter%5Bassigned_to_id%5D=");  // phpcs:ignore
         $response->assertSee($task->name);
@@ -42,9 +42,9 @@ class IndexTest extends TestCase
     {
         $this->seed();
         $user = User::factory()->create();
-        $task1 = Task::where('name', 'путинахуйнуть')->first();
-        $task2 = Task::where('name', 'Сделать растяжку')->first();
-        $task3 = Task::where('name', 'Полетать')->first();
+        $task1 = Task::where('name', 'путинахуйнуть')->firstOrFail();
+        $task2 = Task::where('name', 'Сделать растяжку')->firstOrFail();
+        $task3 = Task::where('name', 'Полетать')->firstOrFail();
 
         $response = $this
             ->get(route('tasks.index') . "?filter%5Bstatus_id%5D={$task1->status->id}&filter%5Bcreated_by_id%5D={$user->id}&filter%5Bassigned_to_id%5D={$user->id}");  // phpcs:ignore

@@ -39,7 +39,7 @@ class DestroyTest extends TestCase
 
         $this->seed();
 
-        $task = Task::where('name', 'Сделать растяжку')->first();
+        $task = Task::where('name', 'Сделать растяжку')->firstOrFail();
 
         $response = $this
             ->actingAs($task->created_by)

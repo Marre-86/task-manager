@@ -14,7 +14,7 @@ class ShowTest extends TestCase
     {
         $this->seed();
 
-        $task = Task::first();
+        $task = Task::firstOrFail();
         $response = $this
             ->get(route('tasks.show', $task));
 
