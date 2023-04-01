@@ -105,7 +105,7 @@ class TaskController extends Controller
         $data = $validator->validated();
         $task = new Task();
         $task->fill($data);
-        $task->created_by_id = Auth::id() ?? 99999;
+        $task->created_by_id = intval(Auth::id()) ?? 99999;   // because of PHPStan so cumbersome
         $task->save();
 
         if (($request->input('labels')) !== null) {
