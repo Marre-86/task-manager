@@ -26,7 +26,7 @@ class EditTest extends TestCase
         $expectedStatus = "<option value=\"{$task->status->id}\" selected=\"selected\">{$task->status->name}</option>";
         $expectedExecutor = "<option value=\"{$task->assigned_to->id}\" selected=\"selected\">{$task->assigned_to->name}</option>";   // phpcs:ignore
         $response->assertSee($expectedName, false);
-        $response->assertSee($expectedDescription, false);
+        $response->assertSee($expectedDescription ?? '', false);
         $response->assertSee($expectedStatus, false);
         $response->assertSee($expectedExecutor, false);
     }
