@@ -5,6 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Task
+ *
+ * @property string $status
+ * @property string $created_by
+ */
+
 class Task extends Model
 {
     use HasFactory;

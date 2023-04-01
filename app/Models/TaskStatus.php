@@ -5,6 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\TaskStatus
+ *
+ * @property mixed $tasks
+ * @property string $description
+ */
+
 class TaskStatus extends Model
 {
     use HasFactory;
