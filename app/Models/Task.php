@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property TaskStatus $status
  * @property User $created_by
  * @property User $assigned_to
- * @property \Illuminate\Database\Eloquent\Relations\BelongsToMany $labels
+ * @property mixed $labels
  */
 
 class Task extends Model

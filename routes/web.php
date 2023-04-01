@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 |
 */
 Route::get('/', function (Request $request) {
-    \Log::debug($request->ip());
+    \Log::debug($request->ip() ?? 'no_IP_was_discovered');
     return view('main');
 })->name('home');
 

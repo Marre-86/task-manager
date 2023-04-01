@@ -9,8 +9,9 @@ class ExampleTest extends TestCase
     /**
      * A basic test example.
      */
-    public function testThatTrueIsTrue(): void
-    {
-        $this->assertTrue(true);
-    }
+ //  commented 'cause initiates PhpStan notice
+ //  public function testThatTrueIsTrue(): void
+ //   {
+ //       $this->assertTrue(true);
+ //   }
 }
