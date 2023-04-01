@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\TaskStatus;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\TaskStatus>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Task>
  */
 class TaskFactory extends Factory
 {
