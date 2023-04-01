@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property TaskStatus $status
  * @property User $created_by
+ * @property User $assigned_to
+ * @property mixed $labels
  */
 
 class Task extends Model
