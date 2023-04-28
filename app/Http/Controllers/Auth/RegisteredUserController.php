@@ -46,9 +46,8 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-       // flash("Welcome Aboard, {$request->name}!");   после прохождения автотестов Хекслета  вернуть
+        flash("Welcome Aboard, {$request->name}!");
 
-        return redirect()->route('home');
- //       return redirect()->route('tasks.index');    после прохождения автотестов Хекслета поменять вот на это
+        return redirect()->route('tasks.index');
     }
 }

@@ -1,6 +1,6 @@
 <x-guest-layout>
     <h2 class="text-center">
-        <a href="/">Менеджер задач</a>
+        <a href="/">{{ __('main.project_name') }}</a>
     </h2>
     <form method="POST" action="{{ route('register') }}">
         @csrf

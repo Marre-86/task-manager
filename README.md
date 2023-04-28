@@ -1,4 +1,3 @@
-[![Actions Status](https://github.com/Marre-86/php-project-57/workflows/hexlet-check/badge.svg)](https://github.com/Marre-86/php-project-57/actions)
 [![author-check](https://github.com/Marre-86/php-project-57/actions/workflows/author-check.yml/badge.svg)](https://github.com/Marre-86/php-project-57/actions/workflows/author-check.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/b94488bb34dd62430bc2/maintainability)](https://codeclimate.com/github/Marre-86/php-project-57/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/b94488bb34dd62430bc2/test_coverage)](https://codeclimate.com/github/Marre-86/php-project-57/test_coverage)
@@ -16,6 +15,8 @@
 Данные в проекте хранятся в БД **PostgreSQL**. Все операции сохранения и извлечения данных из неё реализованы посредством встроенного в Laravel **ORM Eloquent**. Написан файл миграций, спроектированы модели, описаны связи между ними (o2m, m2m). Реализована фильтрация записей из БД по вводимым пользователем GET-параметрам через Query Builder
 
 На все созданные экшны (обработчики маршрутов) мной были написаны автоматические тесты на базе PHPUnit и встроенных в Laravel методов-хелперов. В проект добавлен отчёт о проценте покрытия кода тестами от **Codeclimate**, создан и подключен к **Github Actions** воркфлоу непрерывной интеграции (CI). Проект [задеплоен на PaaS-платоформу **Railway**](https://php-project-57-production-f070.up.railway.app/) и подключен к сервису отслеживания и мгновенного оповещения о возникающих в продакшне ошибок **Rollbar**.
+
+Выполнена полная локализация приложения, оно доступно для использования на русском и английском языках.
 
 В приложении точечно присутствуют элементы JS-скриптов (подтверждение удаления сущностей из БД, автоматическое скрытие флеш-сообщений через 3 секунды), вводимые в проект через **Vite** (встроенный в Laravel механизм сборки "ассетов" CSS и JavaScript).
 

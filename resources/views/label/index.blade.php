@@ -3,23 +3,23 @@
 <section class="bg-white dark:bg-gray-900">
     <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
         <div class="grid col-span-full">
-            <h1 class="mb-5">Метки</h1>
+            <h1 class="mb-5">{{ __('label.title') }}</h1>
             @auth
             <div>
                 <a href="{{ route('labels.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    Создать метку            </a>
+                {{ __('label.create_label') }}            </a>
             </div>
             @endauth
 
             <table class="mt-4">
                 <thead class="border-b-2 border-solid border-black text-left">
                     <tr>
-                        <th>ID</th>
-                        <th>Имя</th>
-                        <th>Описание</th>
-                        <th>Дата создания</th>
+                        <th>{{ __('label.title_ID') }}</th>
+                        <th>{{ __('label.title_name') }}</th>
+                        <th>{{ __('label.title_description') }}</th>
+                        <th>{{ __('label.title_creation_date') }}</th>
                         @auth
-                        <th>Действия</th>
+                        <th>{{ __('label.title_actions') }}</th>
                         @endauth
                     </tr>
                 </thead>
@@ -33,10 +33,10 @@
                         @auth
                         <td>      
                             <a class="text-blue-600 hover:text-blue-900" href="{{ route('labels.edit', $label) }}">
-                                Изменить                        </a>    
-                            <a data-confirm="Вы уверены?" data-method="delete" class="text-red-600 hover:text-red-900"
+                            {{ __('label.change') }}                        </a>    
+                            <a data-confirm="{{ __('label.are_you_sure') }}" data-method="delete" class="text-red-600 hover:text-red-900"
                                href="{{ route('labels.destroy', $label) }}" style="margin-left:10px">
-                                Удалить                        </a>            
+                               {{ __('label.delete') }}                        </a>            
                         </td>
                         @endauth
                     </tr>

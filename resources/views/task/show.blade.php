@@ -4,12 +4,12 @@
     <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
         <div class="grid col-span-full">
             <h2 class="mb-5">
-                Просмотр задачи: {{ $task->name }}       <a href="{{ route('tasks.edit', $task) }}">⚙</a>
+                {{ __('task.show') . $task->name }}       <a href="{{ route('tasks.edit', $task) }}">⚙</a>
             </h2>
-            <p><span class="font-black">Имя:</span> {{ $task->name }}</p>
-            <p><span class="font-black">Статус:</span> {{ $task->status->name }}</p>
-            <p><span class="font-black">Описание:</span> {{ $task->description }}</p>
-            <p><span class="font-black">Метки:</span></p>
+            <p><span class="font-black">{{ __('task.title_task_name') .  ": "}}</span> {{ $task->name }}</p>
+            <p><span class="font-black">{{ __('task.title_status') .  ": "}}</span> {{ $task->status->name }}</p>
+            <p><span class="font-black">{{ __('task.title_description') .  ": "}}</span> {{ $task->description }}</p>
+            <p><span class="font-black">{{ __('task.title_labels') .  ": "}}</span></p>
             <div>
                 @foreach ($task->labels as $label)
                 <div class="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-200 text-blue-700 rounded-full">
