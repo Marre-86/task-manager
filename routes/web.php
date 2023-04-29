@@ -19,7 +19,7 @@ use Illuminate\Http\Request;
 */
 Route::get('/', function (Request $request) {
 
-    \Log::debug($request->ip() ?? 'no_IP_was_discovered');
+    \Log::info($request->ip() ? "Посещение главной с IP-адреса " . $request->ip() : 'no_IP_was_discovered');
     return view('main');
 })->name('home');
 

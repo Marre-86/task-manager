@@ -6,10 +6,10 @@ return [
     'create_status' => 'Create status',
 
     'create' => 'Create',
-    'change' => 'Change',
+    'change' => 'Edit',
     'delete' => 'Delete',
     'are_you_sure' => 'Are you sure?',
-    'change_title' => 'Change status',
+    'change_title' => 'Edit status',
 
     'title_ID' => 'ID',
     'title_name' => 'Name',

@@ -13,6 +13,7 @@ class TaskStatusController extends Controller
      */
     public function index()
     {
+        \Log::info('Посещение списка статусов');
         $taskStatuses = TaskStatus::orderBy('id')->paginate(20);
         return view('task_status.index', compact('taskStatuses'));
     }

@@ -13,6 +13,7 @@ class LabelController extends Controller
      */
     public function index()
     {
+        \Log::info('Посещение списка меток');
         $labels = Label::orderBy('id')->paginate(50);
         return view('label.index', compact('labels'));
     }

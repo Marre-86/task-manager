@@ -7,10 +7,10 @@ return [
     
 
     'create' => 'Create',
-    'change' => 'Change',
+    'change' => 'Edit',
     'delete' => 'Delete',
     'are_you_sure' => 'Are you sure?',
-    'change_title' => 'Change label',
+    'change_title' => 'Edit label',
 
     'title_ID' => 'ID',
     'title_name' => 'Name',

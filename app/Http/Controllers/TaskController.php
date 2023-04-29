@@ -17,6 +17,7 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
+        \Log::info('Посещение списка задач');
         $statuses = TaskStatus::all()->sortBy('id')
             ->mapWithKeys(function ($item, $key) {
                 return [$item['id'] => $item['name']];

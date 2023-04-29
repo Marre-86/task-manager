@@ -7,11 +7,11 @@ return [
 
     'apply' => 'Apply',
     'create' => 'Create',
-    'change' => 'Change',
+    'change' => 'Edit',
     'delete' => 'Delete',
     'are_you_sure' => 'Are you sure?',
     'show' => 'View task: ',
-    'change_title' => 'Change task',
+    'change_title' => 'Edit task',
 
     'title_ID' => 'ID',
     'title_task_name' => 'Name',
