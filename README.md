@@ -16,7 +16,7 @@ All user data is stored in the **PostgreSQL database**. Operations of storing an
 
 All created controller's actions are covered by automated tests (feature tests) based on PHPUnit and Laravel built-in assertion methods. A test coverage report from **Codeclimate** was added to this project.
 
-**GitHub Actions** CI/CD workflow for this project was also created and tuned in a way that every commit is instantly being built, tested and deployed if no errors were found.**Railway** deployment platform [serves as a host](https://php-project-57-production-f070.up.railway.app/)  of this web app. Also it is linked to the real-time error tracking platform **Rollbar**.
+**GitHub Actions** CI/CD workflow for this project was also created and tuned in a way that every commit is instantly being built, tested and deployed if no errors were found. **Railway** deployment platform [serves as a host](https://php-project-57-production-f070.up.railway.app/)  of this web app. Also it is linked to the real-time error tracking platform **Rollbar**.
 
 Full localization for two languages (English, Russian) has been conducted.
 

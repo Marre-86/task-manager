@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 |
 */
 Route::get('/', function (Request $request) {
-
+    dd($request->ip());
     \Log::info($request->ip() ? "Посещение главной с IP-адреса " . $request->ip() : 'no_IP_was_discovered');
     return view('main');
 })->name('home');

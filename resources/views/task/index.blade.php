@@ -37,7 +37,7 @@
                 <thead class="border-b-2 border-solid border-black text-left">
                     <tr>
                         <th>{{ __('task.title_ID') }}</th>
-                        <th>{{ __('task.title_task_name') }}</th>
+                        <th>{{ __('task.title_status') }}</th>
                         <th>{{ __('task.title_task_name') }}</th>
                         <th>{{ __('task.title_creator') }}</th>
                         <th>{{ __('task.title_assigned_to') }}</th>

@@ -8,7 +8,7 @@
             {{ Form::model($task, ['route' => ['tasks.update', $task], 'method' => 'PATCH']) }}
                 @include('task.form')
                     <div class="mt-2">
-                        {{ Form::submit('Обновить', ['class' => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded']) }}
+                        {{ Form::submit(__('task.change'), ['class' => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded']) }}
                     </div>
                 </div>
         </div>
