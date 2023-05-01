@@ -19,7 +19,7 @@ class CreateTest extends TestCase
             ->get(route('labels.create'));
 
         $response->assertOk();
-        $response->assertSee("Создать метку");
+        $response->assertSee(__('label.create_label'));
     }
 
     public function testCreationFormCanNotBeRenderedForGuest(): void

@@ -19,7 +19,7 @@ class CreateTest extends TestCase
             ->get(route('tasks.create'));
 
         $response->assertOk();
-        $response->assertSee("Создать задачу");
+        $response->assertSee(__('task.create_task'));
     }
 
     public function testCreationFormCanNotBeRenderedForGuest(): void
